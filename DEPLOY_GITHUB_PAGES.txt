@@ -1,0 +1,23 @@
+FINANS MERKEZI v10 - UCRETSIZ HTTPS / GIZLILIKLI PWA
+
+1) GitHub'da yeni bir PUBLIC repo ac. Ornek: finans-merkezi.
+2) Bu klasordeki DOSYALARIN TAMAMINI repo ana dizinine yukle. ZIP dosyasini degil, icindeki dosyalari yukle.
+3) GitHub: Settings -> Pages -> Deploy from a branch -> main -> /(root) -> Save.
+4) GitHub bir HTTPS adresi verecek. Adres https:// ile baslamali.
+5) iPhone Safari'de bu adresi ac. Paylas -> Ana Ekrana Ekle.
+6) Ana ekrandan Finans Merkezi'ni ac.
+
+GIZLILIK MIMARISI
+- Finans kayitlari IndexedDB + localStorage ile cihazda tutulur.
+- Bu projede kendi sunucusuna finans kaydi gonderen bir veritabani/API bulunmaz.
+- Service worker sadece uygulamanin kendi dosyalarini cache eder; dis fiyat API cevaplarini cache etmez.
+- Analitik, reklam veya takip kodu yoktur.
+- Altin guncellemesinde fiyat servisine sadece fiyat verisini almak icin istek yapilir.
+- Hisse guncellemesinde hisse kodu fiyat servislerine gidebilir; adet, alis fiyati ve portfoy toplamı gonderilmez.
+- Canli fiyat icin internet gerekir; internet yokken son kayitli fiyatlar kullanilir.
+
+ONEMLI
+HTTPS yayini uygulama dosyalarini internete acik hale getirir; ancak finans kayitlarinin sunucuda tutulmasi gerekmez. GitHub reposu PUBLIC ise uygulama kodu herkes tarafindan gorulebilir. Finans verileri repoya yazilmaz.
+
+YEDEK
+Ayarlar -> Disa aktar ile JSON yedegi al. Bu JSON finans verilerini icerebilir; GitHub'a yukleme.

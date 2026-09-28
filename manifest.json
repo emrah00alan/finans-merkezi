@@ -1,0 +1,23 @@
+{
+  "name": "Finans Merkezi",
+  "short_name": "Finans",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#162033",
+  "description": "Yerel depolamalı, gizlilik odaklı kişisel finans uygulaması",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "scope": "./",
+  "orientation": "portrait",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ]
+}

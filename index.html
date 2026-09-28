@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#162033">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://finans.truncgil.com https://api.bist-api.com https://api.allorigins.win https://query1.finance.yahoo.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Finans Merkezi">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+<title>Finans Merkezi</title>
+</head>
+<body>
+<div id="lockScreen" class="lockscreen">
+  <div class="lockcard">
+    <div class="lockicon">🔐</div>
+    <div class="eyebrow">KİŞİSEL FİNANS</div>
+    <h1>Finans Merkezi</h1>
+    <p id="lockText">Uygulamayı açmak için şifrenizi girin.</p>
+    <form id="lockForm">
+      <input id="lockPassword" type="password" inputmode="numeric" autocomplete="current-password" minlength="4" maxlength="64" placeholder="Şifre" required>
+      <input id="lockPassword2" class="hidden" type="password" inputmode="numeric" autocomplete="new-password" minlength="4" maxlength="64" placeholder="Şifre tekrar">
+      <button class="formsubmit" type="submit" id="lockSubmit">Giriş Yap</button>
+    </form>
+    <small id="lockHint">Şifren yalnızca bu cihazda tutulur.</small>
+    <div id="lockError" class="lockerror"></div>
+  </div>
+</div>
+<header class="topbar">
+  <div><div class="eyebrow">KİŞİSEL FİNANS</div><h1>Finans Merkezi</h1><div id="today" class="muted"></div><div id="connectionStatus" class="connection local">● Cihazda saklanıyor</div></div>
+  <button id="backupBtn" class="iconbtn" aria-label="Yedekle">↥</button>
+</header>
+<main>
+<section id="summary" class="page active">
+  <div class="monthbar"><button id="prevMonth">‹</button><select class="monthSelect" aria-label="Ay seç"></select><button id="nextMonth">›</button></div>
+  <div class="hero"><div><span>Bu ay kalan</span><strong id="heroBalance" class="neutral">₺0,00</strong><small id="heroSub">Gelir − gider − bekleyen ödeme</small></div><div id="heroBadge" class="badge neutral">Dengede</div></div>
+  <div class="cards">
+    <div class="card income"><span>Gelir</span><b id="incomeTotal">₺0</b></div>
+    <div class="card expense"><span>Gider</span><b id="expenseTotal">₺0</b></div>
+    <div class="card due"><span>Ödenecek</span><b id="dueTotal">₺0</b></div>
+    <div class="card balance"><span>Net kalan</span><b id="balanceTotal">₺0</b></div>
+  </div>
+  <div class="quick">
+    <button id="addIncome" class="quickbtn incomeBtn">+ Gelir</button>
+    <button id="addExpense" class="quickbtn expenseBtn">+ Gider</button>
+    <button id="addObligation" class="quickbtn debtBtn">+ Borç / Ödeme</button>
+  </div>
+  <div class="sectionhead"><h2>Bu ay</h2><button class="textbtn" data-page="month">Tümünü gör</button></div>
+  <div id="summaryHint" class="hintbox">Gelir, gider ve borçlarını bu ay altında takip et. “Her ay tekrarla” seçersen gelecek aylara otomatik kaydedilir.</div>
+</section>
+
+<section id="month" class="page">
+  <div class="pagehead"><div><div class="eyebrow">AYLIK KAYIT</div><h2>Bu Ay</h2></div></div>
+  <div class="monthbar"><button id="prevMonth2">‹</button><select class="monthSelect"></select><button id="nextMonth2">›</button></div>
+  <div class="sectionhead"><h2>Hareketler</h2><div class="smallActions"><button id="addIncome2" class="smallbtn">+ Gelir</button><button id="addExpense2" class="smallbtn">+ Gider</button></div></div>
+  <div id="moveList" class="rows"></div>
+  <div class="sectionhead"><h2>Borçlar ve ödemeler</h2><button id="addObligation2" class="smallbtn redbtn">+ Borç / Ödeme</button></div>
+  <div class="tabletitle"><span>Açıklama</span><span>Tutar</span><span>Durum</span></div>
+  <div id="obligationList" class="rows"></div>
+  <div class="totalrow"><span>Bu ay toplam borç/ödeme</span><b id="monthTotal">₺0</b></div>
+</section>
+
+<section id="savings" class="page">
+  <div class="pagehead"><div><div class="eyebrow">VARLIKLAR</div><h2>Birikimler</h2></div></div>
+  <div class="simpleTotal"><span>Toplam birikim ve varlık</span><strong id="netWorth">₺0</strong></div>
+  <div class="sectionhead"><h2>Altın</h2><button id="refreshGold" class="smallbtn">Kuru güncelle</button></div>
+  <div id="goldRatesLine" class="goldrates"><span>Gram —</span><span>Çeyrek —</span><span>Yarım —</span><span>Tam —</span><span>22 Ayar —</span></div>
+  <div class="goldbox">
+    <div class="goldrow"><label>Gram<input id="goldGram" type="number" step="0.001" min="0"></label><b id="goldGramValue">₺0</b></div>
+    <div class="goldrow"><label>Çeyrek<input id="goldQuarter" type="number" step="1" min="0"></label><b id="goldQuarterValue">₺0</b></div>
+    <div class="goldrow"><label>Yarım<input id="goldHalf" type="number" step="1" min="0"></label><b id="goldHalfValue">₺0</b></div>
+    <div class="goldrow"><label>Tam<input id="goldFull" type="number" step="1" min="0"></label><b id="goldFullValue">₺0</b></div>
+    <div class="goldrow"><label>22 ayar bilezik (gram)<input id="goldBracelet" type="number" step="0.001" min="0"></label><b id="goldBraceletValue">₺0</b></div>
+    <div class="goldtotal"><span>Altın toplamı</span><strong id="goldValue">₺0</strong></div>
+    <small id="goldRateInfo">Güncel kur alınmadı.</small>
+  </div>
+  <div class="sectionhead"><h2>Borsa</h2><button id="refreshStocks" class="smallbtn">Kurları güncelle</button><button id="addStock" class="smallbtn">+ Hisse</button></div>
+  <div id="stockList" class="rows"></div>
+  <div class="sectionhead"><h2>Birikim hedefleri</h2><button id="addGoal" class="smallbtn">+ Hedef</button></div>
+  <div id="goalList" class="rows"></div>
+  <div class="sectionhead"><h2>Diğer varlıklar</h2><button id="addAsset" class="smallbtn">+ Varlık</button></div>
+  <div id="assetList" class="rows"></div>
+</section>
+
+<section id="settings" class="page">
+  <div class="pagehead"><div><div class="eyebrow">UYGULAMA</div><h2>Ayarlar</h2></div></div>
+  <div class="settingsbox"><h3>🔐 Şifreli yedekleme</h3><p>Finans kayıtların AES-GCM ile cihazında şifrelenerek yedeklenir. Yedek dosyası internete gönderilmez.</p><div class="smallActions"><button id="exportBtn" class="smallbtn">Şifreli Yedek Al</button><button id="importBtn" class="smallbtn">Yedeği Geri Yükle</button></div><input id="importFile" type="file" accept=".fmbackup" hidden><small>Yedek şifresini unutursan dosya geri açılamaz.</small></div>
+  <div class="settingsbox"><h3>🔑 Uygulama şifresi</h3><p>Giriş şifresini değiştirebilirsin. Şifre yalnızca bu cihazda saklanır.</p><button id="changePasswordBtn" class="smallbtn">Şifreyi Değiştir</button></div>
+  <div class="settingsbox"><h3>Aylık tekrarlar</h3><p><b id="recurringCount">0</b> adet aylık kayıt kuralı var. Yeni gelir, gider veya borç eklerken “Her ay tekrarla” seçebilirsin.</p></div>
+  <div class="settingsbox"><h3>Gizlilik</h3><p><b>Finans kayıtların bu telefonda tutulur.</b> Gelir, gider, borç, ödeme, altın miktarı, hisse adedi ve diğer kayıtlar uygulamanın yerel depolamasında saklanır. Uygulamanın kendi sunucusunda finans veritabanı yoktur; analitik/izleme kodu kullanılmaz.</p><p>Canlı fiyat güncellemesi için yalnızca fiyatı istenen ürünün kodu dış servise gönderilebilir. Tutarların ve portföy miktarlarının dış servise gönderilmesi yapılmaz. Fiyat güncellenmezse son telefonda kayıtlı değer kullanılabilir.</p></div>
+  <div class="settingsbox"><h3>iPhone</h3><p>Safari → Paylaş → Ana Ekrana Ekle. Uygulama HTTPS üzerinden açıldıktan sonra ana ekrana eklenebilir. Bilgisayarın açık kalması gerekmez.</p></div>
+  <div class="settingsbox dangerbox"><h3>Verileri temizle</h3><p>Bu işlem bu cihazdaki tüm finans kayıtlarını siler.</p><button id="clearAll" class="danger">Tüm verileri sil</button></div>
+</section>
+</main>
+<nav class="bottomnav">
+  <button class="nav active" data-page="summary"><span>⌂</span><small>Özet</small></button>
+  <button class="nav" data-page="month"><span>☷</span><small>Bu Ay</small></button>
+  <button class="nav" data-page="savings"><span>◉</span><small>Birikim</small></button>
+  <button class="nav" data-page="settings"><span>⚙</span><small>Ayarlar</small></button>
+</nav>
+<div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead"><h3 id="modalTitle"></h3><button id="closeModal" class="close">×</button></div><form id="modalForm"></form></div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
