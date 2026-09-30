@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#162033">
+<meta name="theme-color" content="#061521">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://finans.truncgil.com https://api.bist-api.com https://api.allorigins.win https://query1.finance.yahoo.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,98 +12,197 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="stylesheet" href="style.css">
-<title>Finans Merkezi</title>
+<title>Finans Merkezi · MUxEM</title>
 </head>
 <body>
-<div id="lockScreen" class="lockscreen">
-  <div class="lockcard">
-    <div class="lockicon">🔐</div>
-    <div class="eyebrow">KİŞİSEL FİNANS</div>
+<!-- V12 inline icon system -->
+<svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+ <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></symbol>
+ <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 16v-5M12 16V7M16 16v-9M20 16v-5"/></symbol>
+ <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6.5h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2M16 12h4"/><circle cx="16" cy="12" r="1"/></symbol>
+ <symbol id="i-gold" viewBox="0 0 24 24"><path d="m5 14 3-5 4 7 4-9 3 7H5Z"/><path d="M4 19h16M7 5h4M15 4h3"/></symbol>
+ <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v16.0M5 12h14"/></symbol>
+ <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></symbol>
+ <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="m6 10 6 6 6-6"/></symbol>
+ <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 11h10l3-8H6M9 19h.01M17 19h.01"/></symbol>
+ <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 9-12h-7z"/></symbol>
+ <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/><path d="M7 14h.01M12 14h.01M17 14h.01M7 18h.01M12 18h.01M17 18h.01"/></symbol>
+ <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19 13.5 1.2 1-.1 1.7-1.6 1-1.5-.5-1.1.8-.2 1.6-1.5.7-1.5-.7-.3-1.6-1-.8-1.5.5-1.6-1-.1-1.7 1.2-1v-1.5l-1.2-1 .1-1.7 1.6-1 1.5.5 1.1-.8.3-1.6 1.5-.7 1.5.7.2 1.6 1.1.8 1.5-.5 1.6 1 .1 1.7-1.2 1z"/></symbol>
+ <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+ <symbol id="i-backup" viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 14v5h14v-5"/></symbol>
+ <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+ <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+ <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-3.2 3-5 7-5s6.2 1.8 7 5"/></symbol>
+ <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+ <symbol id="i-house" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+ <symbol id="i-electric" viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 8-12h-6z"/></symbol>
+ <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 5h6M11 18h2"/></symbol>
+ <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10.5 10.5 0 0 1 14 0M8.5 15.5a6 6 0 0 1 7 0M12 19h.01"/></symbol>
+ <symbol id="i-car" viewBox="0 0 24 24"><path d="m5 16 1.5-6h11L19 16v4h-2v-2H7v2H5zM7.5 10l1-3h7l1 3M7 15h.01M17 15h.01"/></symbol>
+ <symbol id="i-food" viewBox="0 0 24 24"><path d="M6 3v8M9 3v8M3 3v8a3 3 0 0 0 6 0M6 14v7M15 3v18M15 3c3 0 5 2 5 5s-2 5-5 5"/></symbol>
+ <symbol id="i-medical" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+ <symbol id="i-school" viewBox="0 0 24 24"><path d="m3 10 9-6 9 6-9 6zM6 12v6c3 2 9 2 12 0v-6M3 20h18"/></symbol>
+ <symbol id="i-coin" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="4"/><path d="M5 7v6c0 2.2 3.1 4 7 4s7-1.8 7-4V7M5 13v4c0 2.2 3.1 4 7 4s7-1.8 7-4v-4"/></symbol>
+ <symbol id="i-quarter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M8.5 12h7M12 8.5v7"/></symbol>
+ <symbol id="i-bar" viewBox="0 0 24 24"><path d="M7 4h10v16H7zM10 7h4v10h-4z"/></symbol>
+ <symbol id="i-bracelet" viewBox="0 0 24 24"><path d="M7 5a7 7 0 1 0 10 0l-2 2a4 4 0 1 1-6 0z"/><path d="M7 5h3M14 5h3"/></symbol>
+</svg>
+
+<div id="today" class="hidden"></div><div id="lockScreen" class="lockscreen">
+  <div class="lock-photo"></div><div class="lock-shade"></div>
+  <div class="lock-content">
+    <img src="assets/muxem.png" class="lock-logo" alt="MUxEM">
+    <div class="lock-brand">MUXEM</div>
     <h1>Finans Merkezi</h1>
-    <p id="lockText">Uygulamayı açmak için şifrenizi girin.</p>
-    <form id="lockForm">
-      <input id="lockPassword" type="password" inputmode="numeric" autocomplete="current-password" minlength="4" maxlength="64" placeholder="Şifre" required>
-      <input id="lockPassword2" class="hidden" type="password" inputmode="numeric" autocomplete="new-password" minlength="4" maxlength="64" placeholder="Şifre tekrar">
-      <button class="formsubmit" type="submit" id="lockSubmit">Giriş Yap</button>
+    <p>Kişisel Finans Takip Uygulaması</p>
+    <div class="lock-message">Daha iyi bir gelecek için<br>finansal kontrol sizde.</div>
+    <form id="lockForm" class="lock-form">
+      <div class="lock-input"><svg><use href="#i-lock"/></svg><input id="lockPassword" type="password" inputmode="numeric" autocomplete="current-password" minlength="4" maxlength="64" placeholder="Şifre" required></div>
+      <div class="lock-input" id="lockRepeatWrap"><svg><use href="#i-lock"/></svg><input id="lockPassword2" class="hidden" type="password" inputmode="numeric" autocomplete="new-password" minlength="4" maxlength="64" placeholder="Şifre tekrar"></div>
+      <button class="gold-button" type="submit" id="lockSubmit">Giriş Yap</button>
     </form>
-    <small id="lockHint">Şifren yalnızca bu cihazda tutulur.</small>
-    <div id="lockError" class="lockerror"></div>
+    <small id="lockHint">Şifren yalnızca bu cihazda tutulur.</small><div id="lockText" class="lock-text"></div><div id="lockError" class="lockerror"></div>
+    <div class="lock-version">v16.0 <span>•</span> MUxEM</div>
   </div>
 </div>
-<header class="topbar">
-  <div><div class="eyebrow">KİŞİSEL FİNANS</div><h1>Finans Merkezi</h1><div id="today" class="muted"></div><div id="connectionStatus" class="connection local">● Cihazda saklanıyor</div></div>
-  <button id="backupBtn" class="iconbtn" aria-label="Yedekle">↥</button>
+
+<header class="appbar">
+  <div class="brand"><img src="assets/muxem.png" alt="MUxEM"><div><b>Finans Merkezi</b><span>MUxEM</span></div></div>
+  <div class="appbar-actions"><div id="connectionStatus" class="connection">● Cihazda saklanıyor</div><button id="backupBtn" class="round-icon" aria-label="Yedekle"><svg><use href="#i-backup"/></svg></button></div>
 </header>
-<main>
+
+<main class="app-main">
 <section id="summary" class="page active">
-  <div class="monthbar"><button id="prevMonth">‹</button><select class="monthSelect" aria-label="Ay seç"></select><button id="nextMonth">›</button></div>
-  <div class="hero"><div><span>Bu ay kalan</span><strong id="heroBalance" class="neutral">₺0,00</strong><small id="heroSub">Gelir − gider − bekleyen ödeme</small></div><div id="heroBadge" class="badge neutral">Dengede</div></div>
-  <div class="cards">
-    <div class="card income"><span>Gelir</span><b id="incomeTotal">₺0</b></div>
-    <div class="card expense"><span>Gider</span><b id="expenseTotal">₺0</b></div>
-    <div class="card due"><span>Ödenecek</span><b id="dueTotal">₺0</b></div>
-    <div class="card balance"><span>Net kalan</span><b id="balanceTotal">₺0</b></div>
+  <div class="page-topline"><div class="month-picker"><svg><use href="#i-calendar"/></svg><select class="monthSelect" aria-label="Ay seç"></select></div><button class="ghost-round" id="summaryMonthMenu">•••</button></div>
+  <div class="balance-card">
+    <div class="balance-top"><span>Toplam Varlıklar</span><svg><use href="#i-eye"/></svg></div>
+    <strong id="heroBalance">₺0,00</strong>
+    <small id="heroSub">Nisan 2025 · Gelir − gider − ödenen borç/ödemeler</small>
+    <div id="heroBadge" class="status-chip">Dengede</div>
   </div>
-  <div class="quick">
-    <button id="addIncome" class="quickbtn incomeBtn">+ Gelir</button>
-    <button id="addExpense" class="quickbtn expenseBtn">+ Gider</button>
-    <button id="addObligation" class="quickbtn debtBtn">+ Borç / Ödeme</button>
+  <div class="stat-grid">
+    <div class="stat-card income-card"><span><i><svg><use href="#i-arrow-up"/></svg></i>Gelir</span><b id="incomeTotal">₺0,00</b></div>
+    <div class="stat-card expense-card"><span><i><svg><use href="#i-arrow-down"/></svg></i>Gider</span><b id="expenseTotal">₺0,00</b></div>
+    <div class="stat-card neutral-card"><span><i>◉</i>Kalan</span><b id="balanceTotal">₺0,00</b></div>
   </div>
-  <div class="sectionhead"><h2>Bu ay</h2><button class="textbtn" data-page="month">Tümünü gör</button></div>
-  <div id="summaryHint" class="hintbox">Gelir, gider ve borçlarını bu ay altında takip et. “Her ay tekrarla” seçersen gelecek aylara otomatik kaydedilir.</div>
+  <div class="month-progress-card">
+    <div class="progress-head"><div><b>Bu ayın nakit durumu</b><small id="progressText">Gelir ve gider dengesi</small></div><strong id="progressPercent">%0</strong></div>
+    <div class="progress-track"><span id="progressBar"></span></div>
+    <div class="progress-meta"><span>Ödenen <b id="paidExpenseTotal">₺0,00</b></span><span>Bekleyen <b id="pendingTotal">₺0,00</b></span></div>
+  </div>
+  <div class="monthly-summary-card">
+    <div class="summary-card-head"><div><b>Bu ayın özeti</b><small>Gelir, gider ve elde kalan</small></div><span id="summaryNetBadge">Net</span></div>
+    <div class="monthly-summary-grid">
+      <div><span>Gelir</span><b id="monthlySummaryIncome">₺0,00</b></div>
+      <div><span>Gider</span><b id="monthlySummaryExpense">₺0,00</b></div>
+      <div><span>Kalan</span><b id="monthlySummaryBalance">₺0,00</b></div>
+    </div>
+  </div>
+  <div class="quick-actions">
+    <button id="addIncome" class="quick-action income"><span class="qa-icon"><svg><use href="#i-arrow-up"/></svg></span><span>Gelir Ekle</span></button>
+    <button id="addExpense" class="quick-action expense"><span class="qa-icon"><svg><use href="#i-arrow-down"/></svg></span><span>Gider Ekle</span></button>
+    <button id="addObligation" class="quick-action debt"><span class="qa-icon"><svg><use href="#i-wallet"/></svg></span><span>Borç / Ödeme</span></button>
+  </div>
+  <div class="section-head"><div><h2>Son İşlemler</h2><span>Bu ay</span></div><button class="text-action" data-page="month">Tümünü Gör</button></div>
+  <div id="summaryMoveList" class="transaction-card"></div>
+  <div class="upcoming-card">
+    <div class="section-head compact"><div><h2>Yaklaşan ödemeler</h2><span>Önümüzdeki 14 gün</span></div><button class="text-action" data-page="debts">Tümü</button></div>
+    <div id="upcomingList"></div>
+  </div>
+  <div class="category-summary-card">
+    <div class="section-head compact"><div><h2>Gider dağılımı</h2><span>Bu ay en çok harcananlar</span></div><span class="section-mini" id="categoryTotalLabel">₺0,00</span></div>
+    <div id="categorySummaryList"></div>
+  </div>
+  <div id="summaryHint" class="hintbox">Finans kayıtların yalnızca bu cihazda tutulur.</div>
 </section>
 
 <section id="month" class="page">
-  <div class="pagehead"><div><div class="eyebrow">AYLIK KAYIT</div><h2>Bu Ay</h2></div></div>
-  <div class="monthbar"><button id="prevMonth2">‹</button><select class="monthSelect"></select><button id="nextMonth2">›</button></div>
-  <div class="sectionhead"><h2>Hareketler</h2><div class="smallActions"><button id="addIncome2" class="smallbtn">+ Gelir</button><button id="addExpense2" class="smallbtn">+ Gider</button></div></div>
-  <div id="moveList" class="rows"></div>
-  <div class="sectionhead"><h2>Borçlar ve ödemeler</h2><button id="addObligation2" class="smallbtn redbtn">+ Borç / Ödeme</button></div>
-  <div class="tabletitle"><span>Açıklama</span><span>Tutar</span><span>Durum</span></div>
-  <div id="obligationList" class="rows"></div>
-  <div class="totalrow"><span>Bu ay toplam borç/ödeme</span><b id="monthTotal">₺0</b></div>
+  <div class="screen-head"><button class="back-circle" data-page="summary"><svg><use href="#i-back"/></svg></button><div><h2>Gelir / Gider</h2><span>Aylık hareketlerin</span></div><div></div></div>
+  <div class="segmented"><button class="active">Tümü</button><button>Gelir</button><button>Gider</button></div>
+  <div class="month-picker wide"><svg><use href="#i-calendar"/></svg><select class="monthSelect"></select></div>
+  <div class="money-summary"><div class="money-box income"><span>↑ Toplam Gelir</span><b id="monthIncomeDisplay">₺0,00</b></div><div class="money-box expense"><span>↓ Toplam Gider</span><b id="monthExpenseDisplay">₺0,00</b></div><div class="net-box"><span>Net</span><b id="monthNetDisplay">₺0,00</b></div></div>
+  <div id="moveList" class="transaction-card"></div>
+  <div class="bottom-spacer"></div>
+</section>
+
+<section id="debts" class="page">
+  <div class="screen-head"><button class="back-circle" data-page="summary"><svg><use href="#i-back"/></svg></button><div><h2>Borçlar / Ödemeler</h2><span>Takip ve ödeme durumu</span></div><button id="addObligation2" class="plus-circle"><svg><use href="#i-plus"/></svg></button></div>
+  <div class="segmented"><button class="active">Tümü</button><button>Borçlar</button><button>Ödemeler</button></div>
+  <div class="debt-summary"><div><span>Ödenecek</span><b id="dueTotal">₺0,00</b></div><div><span>Bu ay toplam</span><b id="monthTotal">₺0,00</b></div></div>
+  <div id="obligationList" class="debt-list"></div>
 </section>
 
 <section id="savings" class="page">
-  <div class="pagehead"><div><div class="eyebrow">VARLIKLAR</div><h2>Birikimler</h2></div></div>
-  <div class="simpleTotal"><span>Toplam birikim ve varlık</span><strong id="netWorth">₺0</strong></div>
-  <div class="sectionhead"><h2>Altın</h2><button id="refreshGold" class="smallbtn">Kuru güncelle</button></div>
-  <div id="goldRatesLine" class="goldrates"><span>Gram —</span><span>Çeyrek —</span><span>Yarım —</span><span>Tam —</span><span>22 Ayar —</span></div>
-  <div class="goldbox">
-    <div class="goldrow"><label>Gram<input id="goldGram" type="number" step="0.001" min="0"></label><b id="goldGramValue">₺0</b></div>
-    <div class="goldrow"><label>Çeyrek<input id="goldQuarter" type="number" step="1" min="0"></label><b id="goldQuarterValue">₺0</b></div>
-    <div class="goldrow"><label>Yarım<input id="goldHalf" type="number" step="1" min="0"></label><b id="goldHalfValue">₺0</b></div>
-    <div class="goldrow"><label>Tam<input id="goldFull" type="number" step="1" min="0"></label><b id="goldFullValue">₺0</b></div>
-    <div class="goldrow"><label>22 ayar bilezik (gram)<input id="goldBracelet" type="number" step="0.001" min="0"></label><b id="goldBraceletValue">₺0</b></div>
-    <div class="goldtotal"><span>Altın toplamı</span><strong id="goldValue">₺0</strong></div>
-    <small id="goldRateInfo">Güncel kur alınmadı.</small>
+  <div class="screen-head"><button class="back-circle" data-page="summary"><svg><use href="#i-back"/></svg></button><div><h2>Altın / Hisse</h2><span>Birikimler ve yatırımlar</span></div><button class="ghost-round" id="refreshGold">↻</button></div>
+  <div class="segmented"><button class="active">Altın</button><button>Hisse Senedi</button></div>
+  <div class="wealth-change-card">
+    <div><span>Toplam yatırım varlığı</span><small id="wealthChangeText">Geçmiş karşılaştırma hazırlanıyor</small></div>
+    <b id="wealthChangeValue">₺0,00</b>
   </div>
-  <div class="sectionhead"><h2>Borsa</h2><button id="refreshStocks" class="smallbtn">Kurları güncelle</button><button id="addStock" class="smallbtn">+ Hisse</button></div>
-  <div id="stockList" class="rows"></div>
-  <div class="sectionhead"><h2>Birikim hedefleri</h2><button id="addGoal" class="smallbtn">+ Hedef</button></div>
-  <div id="goalList" class="rows"></div>
-  <div class="sectionhead"><h2>Diğer varlıklar</h2><button id="addAsset" class="smallbtn">+ Varlık</button></div>
-  <div id="assetList" class="rows"></div>
+  <div id="goldPanel">
+  <div class="wealth-card gold-wealth"><div class="wealth-icon"><svg><use href="#i-gold"/></svg></div><div><span>Toplam Altın Değeri</span><b id="goldTotalValue">₺0,00</b><small>Güncel kur üzerinden</small></div><em>↑</em></div>
+  <div class="gold-quick-grid"><div><span class="gold-item-title"><i><svg><use href="#i-quarter"/></svg></i>Çeyrek</span><b id="goldQuarterValue">₺0</b><input class="quantity-input" id="goldQuarter" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-coin"/></svg></i>Yarım</span><b id="goldHalfValue">₺0</b><input class="quantity-input" id="goldHalf" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-coin"/></svg></i>Gram</span><b id="goldGramValue">₺0</b><input class="quantity-input" id="goldGram" type="number" step="0.001" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-bar"/></svg></i>Tam</span><b id="goldFullValue">₺0</b><input class="quantity-input" id="goldFull" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-bracelet"/></svg></i>Bilezik</span><b id="goldBraceletValue">₺0</b><input class="quantity-input" id="goldBracelet" type="number" step="0.001" min="0" placeholder="0"></div></div>
+  <div class="panel-card"><div class="panel-title"><h3>Güncel Altın Fiyatları</h3><button id="refreshGold2" class="tiny-button">Güncelle</button></div><div id="goldRatesLine" class="goldrates"></div><small id="goldRateInfo"></small></div>
+  <div class="gold-hidden-fields" aria-hidden="true"><input id="goldValue"></div>
+  </div>
+  <div id="stockPanel">
+    <div class="section-head"><div><h2>Borsa</h2><span>Portföyün</span></div><div class="action-pair"><button id="refreshStocks" class="tiny-button">↻</button><button id="addStock" class="plus-circle small"><svg><use href="#i-plus"/></svg></button></div></div>
+    <div id="stockList" class="asset-list"></div>
+    <div class="section-head"><div><h2>Birikim Hedefleri</h2><span>Hedeflerini takip et</span></div><button id="addGoal" class="tiny-button">+ Hedef</button></div>
+    <div id="goalList" class="asset-list"></div>
+    <div class="section-head"><div><h2>Diğer Varlıklar</h2><span>Ek varlıklar</span></div><button id="addAsset" class="tiny-button">+ Varlık</button></div>
+    <div id="assetList" class="asset-list"></div>
+  </div>
+</section>
+
+<section id="calendar" class="page">
+  <div class="screen-head"><button class="back-circle" data-page="summary"><svg><use href="#i-back"/></svg></button><div><h2>Takvim</h2><span>Gelir, gider ve ödemelerin</span></div><div></div></div>
+  <div class="calendar-toolbar"><button id="calPrev" class="ghost-round">‹</button><div><b id="calMonthTitle"></b><small>Ay görünümü</small></div><button id="calNext" class="ghost-round">›</button></div>
+  <div class="calendar-card">
+    <div class="calendar-week"><span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span></div>
+    <div id="calendarGrid" class="calendar-grid"></div>
+  </div>
+  <div class="calendar-legend"><span><i class="dot income"></i>Gelir</span><span><i class="dot expense"></i>Gider</span><span><i class="dot debt"></i>Ödeme</span></div>
+  <div class="calendar-month-summary">
+    <div class="section-head compact"><div><h2>Ay özeti</h2><span>Takvimdeki ayın genel görünümü</span></div></div>
+    <div class="calendar-summary-grid">
+      <div><span>Gelir</span><b id="calendarMonthIncome">₺0,00</b></div>
+      <div><span>Gider</span><b id="calendarMonthExpense">₺0,00</b></div>
+      <div><span>Net</span><b id="calendarMonthNet">₺0,00</b></div>
+      <div><span>Bekleyen</span><b id="calendarMonthPending">₺0,00</b></div>
+    </div>
+  </div>
+  <div class="calendar-day-card"><div class="section-head compact"><div><h2 id="calendarDayTitle">Günün kayıtları</h2><span>Seçtiğin gün</span></div></div><div id="calendarDayList"></div></div>
 </section>
 
 <section id="settings" class="page">
-  <div class="pagehead"><div><div class="eyebrow">UYGULAMA</div><h2>Ayarlar</h2></div></div>
-  <div class="settingsbox"><h3>🔐 Şifreli yedekleme</h3><p>Finans kayıtların AES-GCM ile cihazında şifrelenerek yedeklenir. Yedek dosyası internete gönderilmez.</p><div class="smallActions"><button id="exportBtn" class="smallbtn">Şifreli Yedek Al</button><button id="importBtn" class="smallbtn">Yedeği Geri Yükle</button></div><input id="importFile" type="file" accept=".fmbackup" hidden><small>Yedek şifresini unutursan dosya geri açılamaz.</small></div>
-  <div class="settingsbox"><h3>🔑 Uygulama şifresi</h3><p>Giriş şifresini değiştirebilirsin. Şifre yalnızca bu cihazda saklanır.</p><button id="changePasswordBtn" class="smallbtn">Şifreyi Değiştir</button></div>
-  <div class="settingsbox"><h3>Aylık tekrarlar</h3><p><b id="recurringCount">0</b> adet aylık kayıt kuralı var. Yeni gelir, gider veya borç eklerken “Her ay tekrarla” seçebilirsin.</p></div>
-  <div class="settingsbox"><h3>Gizlilik</h3><p><b>Finans kayıtların bu telefonda tutulur.</b> Gelir, gider, borç, ödeme, altın miktarı, hisse adedi ve diğer kayıtlar uygulamanın yerel depolamasında saklanır. Uygulamanın kendi sunucusunda finans veritabanı yoktur; analitik/izleme kodu kullanılmaz.</p><p>Canlı fiyat güncellemesi için yalnızca fiyatı istenen ürünün kodu dış servise gönderilebilir. Tutarların ve portföy miktarlarının dış servise gönderilmesi yapılmaz. Fiyat güncellenmezse son telefonda kayıtlı değer kullanılabilir.</p></div>
-  <div class="settingsbox"><h3>iPhone</h3><p>Safari → Paylaş → Ana Ekrana Ekle. Uygulama HTTPS üzerinden açıldıktan sonra ana ekrana eklenebilir. Bilgisayarın açık kalması gerekmez.</p></div>
-  <div class="settingsbox dangerbox"><h3>Verileri temizle</h3><p>Bu işlem bu cihazdaki tüm finans kayıtlarını siler.</p><button id="clearAll" class="danger">Tüm verileri sil</button></div>
+  <div class="screen-head menu-head"><div class="brand-large"><img src="assets/muxem.png"><div><b>Finans Merkezi</b><span>MUxEM</span></div></div><button class="round-icon"><svg><use href="#i-settings"/></svg></button></div>
+  <div class="menu-card">
+    <button class="menu-item"><span class="menu-icon"><svg><use href="#i-settings"/></svg></span><span>Ayarlar<small>Uygulama tercihleri</small></span><b>›</b></button>
+    <button id="changePasswordBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-lock"/></svg></span><span>Şifre Değiştir<small>Giriş güvenliği</small></span><b>›</b></button>
+    <button id="exportBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-backup"/></svg></span><span>Şifreli Yedek Al<small>Finans verilerini şifrele</small></span><b>›</b></button>
+    <button id="importBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-backup"/></svg></span><span>Yedeği Geri Yükle<small>Önceki verileri getir</small></span><b>›</b></button>
+    <button class="menu-item"><span class="menu-icon"><svg><use href="#i-info"/></svg></span><span>Uygulama Hakkında<small>Finans Merkezi · v16.0</small></span><b>›</b></button>
+  </div>
+  <div class="panel-card recurring-manager"><div class="panel-title"><div><h3>Tekrarlayan işlemler</h3><small class="panel-sub">Her ay otomatik oluşturulan kayıtlar</small></div><button id="addRecurring" class="tiny-button">+ Ekle</button></div><div id="recurringList" class="asset-list"></div></div>
+  <div class="about-card"><img src="assets/muxem.png" alt="MUxEM"><b>MUxEM</b><span>Finans Merkezi</span><small>Kişisel finansını sade, güvenli ve cihazında takip et.</small><p><strong>Geliştiren: Emrah</strong><br>Finans Merkezi, günlük gelir, gider, borç, ödeme ve varlık takibini kolaylaştırmak için geliştirilmiştir.</p><div class="about-points"><span>🔒 Verilerin cihazında</span><span>📴 Çevrimdışı kullanım</span><span>☁️ Şifreli yedek</span></div><em>Powered by MUxEM · Tüm hakları saklıdır</em></div>
+  <input id="importFile" type="file" accept=".fmbackup" hidden>
+  <div class="privacy-card"><b>Gizlilik</b><span>Finans kayıtların bu cihazda tutulur. İnternet yalnızca fiyat güncellemeleri için kullanılır.</span><button id="clearAll" class="danger-link">Tüm verileri sil</button></div>
+  <div class="hidden" id="recurringCount">0</div>
 </section>
 </main>
+
 <nav class="bottomnav">
-  <button class="nav active" data-page="summary"><span>⌂</span><small>Özet</small></button>
-  <button class="nav" data-page="month"><span>☷</span><small>Bu Ay</small></button>
-  <button class="nav" data-page="savings"><span>◉</span><small>Birikim</small></button>
-  <button class="nav" data-page="settings"><span>⚙</span><small>Ayarlar</small></button>
+ <button class="nav active" data-page="summary"><svg><use href="#i-home"/></svg><small>Ana Sayfa</small></button>
+ <button class="nav" data-page="debts"><svg><use href="#i-wallet"/></svg><small>Borçlar</small></button>
+ <button class="nav" data-page="savings"><svg><use href="#i-gold"/></svg><small>Altın/Hisse</small></button>
+ <button class="nav" data-page="calendar"><svg><use href="#i-calendar"/></svg><small>Takvim</small></button>
+ <button class="nav" data-page="settings"><svg><use href="#i-menu"/></svg><small>Menü</small></button>
 </nav>
+
 <div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead"><h3 id="modalTitle"></h3><button id="closeModal" class="close">×</button></div><form id="modalForm"></form></div></div>
 <div id="toast" class="toast"></div>
 <script src="app.js"></script>
-</body>
-</html>
+</body></html>

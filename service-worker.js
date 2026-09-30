@@ -1,11 +1,13 @@
-const CACHE = "finans-merkezi-pwa-v11";
+const CACHE = "finans-merkezi-pwa-v14.1";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
   "./manifest.json",
-  "./icon.svg"
+  "./icon.svg",
+  "./assets/muxem.png",
+  "./assets/nemrut.jpg"
 ];
 
 self.addEventListener("install", event => {
