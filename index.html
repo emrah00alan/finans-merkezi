@@ -22,7 +22,7 @@
  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6.5h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2M16 12h4"/><circle cx="16" cy="12" r="1"/></symbol>
  <symbol id="i-gold" viewBox="0 0 24 24"><path d="m5 14 3-5 4 7 4-9 3 7H5Z"/><path d="M4 19h16M7 5h4M15 4h3"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
- <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v16.0M5 12h14"/></symbol>
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v17.0M5 12h14"/></symbol>
  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></symbol>
  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="m6 10 6 6 6-6"/></symbol>
  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 11h10l3-8H6M9 19h.01M17 19h.01"/></symbol>
@@ -64,7 +64,7 @@
       <button class="gold-button" type="submit" id="lockSubmit">Giriş Yap</button>
     </form>
     <small id="lockHint">Şifren yalnızca bu cihazda tutulur.</small><div id="lockText" class="lock-text"></div><div id="lockError" class="lockerror"></div>
-    <div class="lock-version">v16.0 <span>•</span> MUxEM</div>
+    <div class="lock-version">v17.0 <span>•</span> MUxEM</div>
   </div>
 </div>
 
@@ -77,7 +77,7 @@
 <section id="summary" class="page active">
   <div class="page-topline"><div class="month-picker"><svg><use href="#i-calendar"/></svg><select class="monthSelect" aria-label="Ay seç"></select></div><button class="ghost-round" id="summaryMonthMenu">•••</button></div>
   <div class="balance-card">
-    <div class="balance-top"><span>Toplam Varlıklar</span><svg><use href="#i-eye"/></svg></div>
+    <div class="balance-top"><span>Toplam Varlıklar</span><button id="heroEye" class="amount-eye" aria-label="Tutarları gizle/göster"><svg><use href="#i-eye"/></svg></button></div>
     <strong id="heroBalance">₺0,00</strong>
     <small id="heroSub">Nisan 2025 · Gelir − gider − ödenen borç/ödemeler</small>
     <div id="heroBadge" class="status-chip">Dengede</div>
@@ -136,7 +136,7 @@
 
 <section id="savings" class="page">
   <div class="screen-head"><button class="back-circle" data-page="summary"><svg><use href="#i-back"/></svg></button><div><h2>Altın / Hisse</h2><span>Birikimler ve yatırımlar</span></div><button class="ghost-round" id="refreshGold">↻</button></div>
-  <div class="segmented"><button class="active">Altın</button><button>Hisse Senedi</button></div>
+  <div class="segmented savings-tabs"><button class="active">Altın</button><button>Hisse Senedi</button><button>Açıklamalar</button></div>
   <div class="wealth-change-card">
     <div><span>Toplam yatırım varlığı</span><small id="wealthChangeText">Geçmiş karşılaştırma hazırlanıyor</small></div>
     <b id="wealthChangeValue">₺0,00</b>
@@ -144,8 +144,15 @@
   <div id="goldPanel">
   <div class="wealth-card gold-wealth"><div class="wealth-icon"><svg><use href="#i-gold"/></svg></div><div><span>Toplam Altın Değeri</span><b id="goldTotalValue">₺0,00</b><small>Güncel kur üzerinden</small></div><em>↑</em></div>
   <div class="gold-quick-grid"><div><span class="gold-item-title"><i><svg><use href="#i-quarter"/></svg></i>Çeyrek</span><b id="goldQuarterValue">₺0</b><input class="quantity-input" id="goldQuarter" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-coin"/></svg></i>Yarım</span><b id="goldHalfValue">₺0</b><input class="quantity-input" id="goldHalf" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-coin"/></svg></i>Gram</span><b id="goldGramValue">₺0</b><input class="quantity-input" id="goldGram" type="number" step="0.001" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-bar"/></svg></i>Tam</span><b id="goldFullValue">₺0</b><input class="quantity-input" id="goldFull" type="number" step="1" min="0" placeholder="0"></div><div><span class="gold-item-title"><i><svg><use href="#i-bracelet"/></svg></i>Bilezik</span><b id="goldBraceletValue">₺0</b><input class="quantity-input" id="goldBracelet" type="number" step="0.001" min="0" placeholder="0"></div></div>
+  <button id="addGoldEntry" class="gold-add-button">+ Altın Ekle ve Açıklama Kaydet</button>
   <div class="panel-card"><div class="panel-title"><h3>Güncel Altın Fiyatları</h3><button id="refreshGold2" class="tiny-button">Güncelle</button></div><div id="goldRatesLine" class="goldrates"></div><small id="goldRateInfo"></small></div>
   <div class="gold-hidden-fields" aria-hidden="true"><input id="goldValue"></div>
+  </div>
+  <div id="goldNotesPanel" class="hidden">
+    <div class="panel-card gold-notes-card"><div class="panel-title"><div><h3>Altın ekleme kayıtları</h3><small class="panel-sub">Tarih otomatik · kaynak ve not manuel</small></div><button id="addGoldEntry2" class="tiny-button">+ Altın Ekle</button></div>
+      <div class="gold-notes-head"><span>Tarih</span><span>Nereden alındı</span><span>Eklenen altın</span><span>Açıklama</span><span></span></div>
+      <div id="goldNotesList" class="gold-notes-list"></div>
+    </div>
   </div>
   <div id="stockPanel">
     <div class="section-head"><div><h2>Borsa</h2><span>Portföyün</span></div><div class="action-pair"><button id="refreshStocks" class="tiny-button">↻</button><button id="addStock" class="plus-circle small"><svg><use href="#i-plus"/></svg></button></div></div>
@@ -177,16 +184,43 @@
   <div class="calendar-day-card"><div class="section-head compact"><div><h2 id="calendarDayTitle">Günün kayıtları</h2><span>Seçtiğin gün</span></div></div><div id="calendarDayList"></div></div>
 </section>
 
+<section id="report" class="page">
+  <div class="screen-head"><button class="back-circle" data-page="settings"><svg><use href="#i-back"/></svg></button><div><h2>Finansal Özet</h2><span>Gelir, gider ve birikim görünümü</span></div><div></div></div>
+  <div class="page-topline"><div class="month-picker"><svg><use href="#i-calendar"/></svg><select class="monthSelect" aria-label="Rapor ayı"></select></div></div>
+  <div class="money-summary report-summary">
+    <div class="money-box income"><span>Toplam Gelir</span><b id="reportIncome">₺0,00</b></div>
+    <div class="money-box expense"><span>Toplam Gider</span><b id="reportExpense">₺0,00</b></div>
+    <div class="net-box"><span>Ay Sonu Net</span><b id="reportNet">₺0,00</b></div>
+  </div>
+  <div class="panel-card"><div class="panel-title"><div><h3>Ödeme durumu</h3><small>Bu ayki borç ve ödemeler</small></div></div><div class="report-grid"><div><span>Ödenen</span><b id="reportPaid">₺0,00</b></div><div><span>Bekleyen</span><b id="reportPending">₺0,00</b></div></div></div>
+  <div class="chart-card"><div class="section-head compact"><div><h2>Son 6 ay</h2><span>Gelir ve gider karşılaştırması</span></div></div><div id="reportChart" class="bar-chart"></div><div id="reportSixSummary" class="report-six-summary"></div></div>
+  <div class="panel-card"><div class="panel-title"><div><h3>En yüksek giderler</h3><small>Kategori bazında</small></div></div><div id="reportCategories" class="report-categories"></div></div>
+  <div class="wealth-card"><div class="wealth-icon"><svg><use href="#i-gold"/></svg></div><div><span>Toplam varlık değeri</span><b id="reportWealth">₺0,00</b></div><em id="reportWealthChange">—</em></div>
+</section>
+
 <section id="settings" class="page">
   <div class="screen-head menu-head"><div class="brand-large"><img src="assets/muxem.png"><div><b>Finans Merkezi</b><span>MUxEM</span></div></div><button class="round-icon"><svg><use href="#i-settings"/></svg></button></div>
   <div class="menu-card">
     <button class="menu-item"><span class="menu-icon"><svg><use href="#i-settings"/></svg></span><span>Ayarlar<small>Uygulama tercihleri</small></span><b>›</b></button>
+    <button class="menu-item" data-page="report"><span class="menu-icon"><svg><use href="#i-chart"/></svg></span><span>Finansal Özet<small>Aylık rapor ve karşılaştırma</small></span><b>›</b></button>
     <button id="changePasswordBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-lock"/></svg></span><span>Şifre Değiştir<small>Giriş güvenliği</small></span><b>›</b></button>
     <button id="exportBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-backup"/></svg></span><span>Şifreli Yedek Al<small>Finans verilerini şifrele</small></span><b>›</b></button>
     <button id="importBtn" class="menu-item"><span class="menu-icon"><svg><use href="#i-backup"/></svg></span><span>Yedeği Geri Yükle<small>Önceki verileri getir</small></span><b>›</b></button>
-    <button class="menu-item"><span class="menu-icon"><svg><use href="#i-info"/></svg></span><span>Uygulama Hakkında<small>Finans Merkezi · v16.0</small></span><b>›</b></button>
+    <button class="menu-item"><span class="menu-icon"><svg><use href="#i-info"/></svg></span><span>Uygulama Hakkında<small>Finans Merkezi · v17.0</small></span><b>›</b></button>
   </div>
   <div class="panel-card recurring-manager"><div class="panel-title"><div><h3>Tekrarlayan işlemler</h3><small class="panel-sub">Her ay otomatik oluşturulan kayıtlar</small></div><button id="addRecurring" class="tiny-button">+ Ekle</button></div><div id="recurringList" class="asset-list"></div></div>
+  <div class="panel-card security-card">
+    <div class="panel-title"><div><h3>Gizlilik & Güvenlik</h3><small>Finans kayıtların cihazında tutulur.</small></div><span class="security-badge">LOCAL</span></div>
+    <div class="security-list">
+      <div><span>🔒</span><div><b>Yerel veri</b><small>Gelir, gider, borç, altın, hisse ve hedef kayıtları cihazdaki yerel depolamada tutulur.</small></div></div>
+      <div><span>☁️</span><div><b>Sunucuya finans kaydı gönderilmez</b><small>İnternet yalnızca desteklenen fiyat güncellemeleri gibi işlemler için kullanılır.</small></div></div>
+      <div><span>💾</span><div><b>Şifreli yedek</b><small>Yedek dosyası sen istemeden hiçbir yere yüklenmez.</small></div></div>
+    </div>
+    <div class="security-controls">
+      <label><span>Rakamları gizli başlat</span><input id="hideAmountsDefault" type="checkbox"></label>
+      <label><span>Otomatik kilit</span><select id="autoLockSelect"><option value="0">Kapalı</option><option value="1">1 dakika</option><option value="5">5 dakika</option><option value="15">15 dakika</option><option value="30">30 dakika</option></select></label>
+    </div>
+  </div>
   <div class="about-card"><img src="assets/muxem.png" alt="MUxEM"><b>MUxEM</b><span>Finans Merkezi</span><small>Kişisel finansını sade, güvenli ve cihazında takip et.</small><p><strong>Geliştiren: Emrah</strong><br>Finans Merkezi, günlük gelir, gider, borç, ödeme ve varlık takibini kolaylaştırmak için geliştirilmiştir.</p><div class="about-points"><span>🔒 Verilerin cihazında</span><span>📴 Çevrimdışı kullanım</span><span>☁️ Şifreli yedek</span></div><em>Powered by MUxEM · Tüm hakları saklıdır</em></div>
   <input id="importFile" type="file" accept=".fmbackup" hidden>
   <div class="privacy-card"><b>Gizlilik</b><span>Finans kayıtların bu cihazda tutulur. İnternet yalnızca fiyat güncellemeleri için kullanılır.</span><button id="clearAll" class="danger-link">Tüm verileri sil</button></div>

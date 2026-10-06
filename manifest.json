@@ -1,6 +1,6 @@
 {
-  "name": "Finans Merkezi",
-  "short_name": "Finans Merkezi",
+  "name": "MUxEM Finans Merkezi",
+  "short_name": "MUxEM Finans",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#061521",
@@ -8,9 +8,9 @@
   "description": "Yerel depolamalı, gizlilik odaklı kişisel finans uygulaması",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "assets/muxemfinans.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
